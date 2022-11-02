@@ -4,15 +4,18 @@ import (
 	"github.com/go-ego/gse"
 )
 
-var seg *gse.Segmenter
+var seg gse.Segmenter
+
+func Load() {
+	if !seg.Load {
+		seg, _ = gse.New("./data/dict/zh/s_1.txt,./data/dict/zh/user.txt")
+	}
+}
 
 func Segment(keywords string) []string {
 
-	if seg == nil {
-		_seg, _ := gse.New("./data/dict/zh/s_1.txt,./data/dict/zh/user.txt")
-		seg = &_seg
-	}
-	//
+	Load()
+
 	//删除重复
 	allKeys := make(map[string]bool)
 	list := []string{}
