@@ -13,9 +13,7 @@ func Load() {
 }
 
 func Segment(keywords string) []string {
-
 	Load()
-
 	//删除重复
 	allKeys := make(map[string]bool)
 	list := []string{}
