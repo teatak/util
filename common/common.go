@@ -263,6 +263,41 @@ func ConvertFromShortUrl(str string) int64 {
 	return result
 }
 
+var charsetLower = "0123456789abcdefghjkmnpqrstuvwxyz"
+
+// 转换url
+func ConvertToLowerShortUrl(id int64) string {
+	// 1 -- > 1
+	// 10-- > a
+	// 62-- > Z
+	var shortUrl []byte
+	count := int64(len(charsetLower))
+	for {
+		var result byte
+		number := id % count
+		result = charsetLower[number]
+		var tmp []byte
+		tmp = append(tmp, result)
+		shortUrl = append(tmp, shortUrl...)
+		id = (id - number) / count
+		if id == 0 {
+			break
+		}
+	}
+	return string(shortUrl)
+}
+
+func ConvertFromLowerShortUrl(str string) int64 {
+	l := len(str)
+	var result int64 = 0
+	for _, r := range str {
+		l--
+		i := strings.Index(charsetLower, string(r))
+		result += int64(i) * int64(math.Pow(62, float64(l)))
+	}
+	return result
+}
+
 func Hmac(str, key string) string {
 	h := hmac.New(sha1.New, []byte(key))
 	h.Write([]byte(str))
