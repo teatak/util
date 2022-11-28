@@ -254,11 +254,12 @@ func ConvertToShortUrl(id int64) string {
 
 func ConvertFromShortUrl(str string) int64 {
 	l := len(str)
+	count := int64(len(charset))
 	var result int64 = 0
 	for _, r := range str {
 		l--
 		i := strings.Index(charset, string(r))
-		result += int64(i) * int64(math.Pow(62, float64(l)))
+		result += int64(i) * int64(math.Pow(float64(count), float64(l)))
 	}
 	return result
 }
@@ -286,11 +287,12 @@ func ConvertToLowerShortUrl(id int64) string {
 
 func ConvertFromLowerShortUrl(str string) int64 {
 	l := len(str)
+	count := int64(len(charsetLower))
 	var result int64 = 0
 	for _, r := range str {
 		l--
 		i := strings.Index(charsetLower, string(r))
-		result += int64(i) * int64(math.Pow(62, float64(l)))
+		result += int64(i) * int64(math.Pow(float64(count), float64(l)))
 	}
 	return result
 }
