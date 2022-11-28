@@ -267,9 +267,6 @@ var charsetLower = "0123456789abcdefghjkmnpqrstuvwxyz"
 
 // 转换url
 func ConvertToLowerShortUrl(id int64) string {
-	// 1 -- > 1
-	// 10-- > a
-	// 62-- > Z
 	var shortUrl []byte
 	count := int64(len(charsetLower))
 	for {
