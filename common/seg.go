@@ -22,13 +22,13 @@ func Segment(keywords string) []string {
 		//过滤字符
 		text := gse.FilterSymbol(s.Token().Text())
 		if text != "" {
-			pos := s.Token().Pos()
-			if pos != "j" {
-				if _, value := allKeys[text]; !value {
-					allKeys[text] = true
-					list = append(list, text)
-				}
+			// pos := s.Token().Pos()
+			// if pos != "j" {
+			if _, value := allKeys[text]; !value {
+				allKeys[text] = true
+				list = append(list, text)
 			}
+			// }
 		}
 	}
 	return list
