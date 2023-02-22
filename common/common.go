@@ -305,18 +305,18 @@ func Hmac(str, key string) string {
 	return hexString
 }
 
-//验证Email，必须是字母数字组合 6-20位
+// 验证Email，必须是字母数字组合 6-20位
 func ValidateEmail(e string) bool {
 	_, err := mail.ParseAddress(e)
 	return err == nil
 }
 
-//验证是否是手机号码
+// 验证是否是手机号码
 func ValidateMobile(e string) bool {
 	if len(e) < 3 && len(e) > 254 {
 		return false
 	}
-	var emailRegex = regexp.MustCompile(`^\+86\:[1]([3-9])[0-9]{9}$`)
+	var emailRegex = regexp.MustCompile(`^\+d{1,3}\:[1]([3-9])[0-9]{9}$`)
 	return emailRegex.MatchString(e)
 }
 
@@ -329,16 +329,16 @@ const (
 )
 
 func IdentityType(e string) Type {
-	if ValidateMobile(e) {
-		return TypeMobile
-	}
 	if ValidateEmail(e) {
 		return TypeEmail
+	}
+	if ValidateMobile(e) {
+		return TypeMobile
 	}
 	return TypeUnknow
 }
 
-//验证用户名，必须是字母数字组合 6-20位
+// 验证用户名，必须是字母数字组合 6-20位
 func ValidateName(name string) bool {
 	letters := len(name)
 	if letters < 6 || letters > 20 {
@@ -363,7 +363,7 @@ func ValidateName(name string) bool {
 	return true
 }
 
-//验证密码
+// 验证密码
 func ValidatePassword(password string) bool {
 	hasNumber := false
 	hasLetter := false
