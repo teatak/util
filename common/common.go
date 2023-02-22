@@ -316,7 +316,8 @@ func ValidateMobile(e string) bool {
 	if len(e) < 3 && len(e) > 254 {
 		return false
 	}
-	var emailRegex = regexp.MustCompile(`^\+d{1,3}\:[1]([3-9])[0-9]{9}$`)
+	//var emailRegex = regexp.MustCompile(`^\+86\:[1]([3-9])[0-9]{9}$`)
+	var emailRegex = regexp.MustCompile(`^\+\d{1,3}\:\d{1,14}$`)
 	return emailRegex.MatchString(e)
 }
 
