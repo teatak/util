@@ -339,10 +339,10 @@ func IdentityType(e string) Type {
 	return TypeUnknow
 }
 
-// 验证用户名，必须是字母数字组合 6-20位
+// 验证用户名，必须是字母数字组合 3-20位
 func ValidateName(name string) bool {
 	letters := len(name)
-	if letters < 6 || letters > 20 {
+	if letters < 3 || letters > 20 {
 		return false
 	}
 	hasSpecial := false
