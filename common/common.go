@@ -347,18 +347,25 @@ func ValidateName(name string) bool {
 	}
 	hasSpecial := false
 	hasSpace := false
+	hasLetter := false
 	for _, c := range name {
 		switch {
 		case unicode.IsPunct(c) || unicode.IsSymbol(c):
 			hasSpecial = true
 		case unicode.IsSpace(c):
 			hasSpace = true
+		case unicode.IsLetter(c):
+			hasLetter = true
 		default:
 			//return false, false, false, false
 		}
 	}
 	fmt.Println(hasSpace, hasSpecial)
 	if hasSpace || hasSpecial {
+		return false
+	}
+	//if no letter
+	if !hasLetter {
 		return false
 	}
 	return true
