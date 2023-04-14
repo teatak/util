@@ -361,11 +361,7 @@ func ValidateName(name string) bool {
 		}
 	}
 	fmt.Println(hasSpace, hasSpecial)
-	if hasSpace || hasSpecial {
-		return false
-	}
-	//if no letter
-	if !hasLetter {
+	if !hasLetter || hasSpace || hasSpecial {
 		return false
 	}
 	return true
