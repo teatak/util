@@ -39,20 +39,20 @@ func Context(dur ...time.Duration) (context.Context, context.CancelFunc) {
 
 func ResolveRegexString(text string) string {
 	replacer := strings.NewReplacer(
-		".", "",
-		"+", "",
-		"*", "",
-		"?", "",
-		"^", "",
-		"$", "",
-		"(", "",
-		")", "",
-		"[", "",
-		"]", "",
-		"{", "",
-		"}", "",
-		"|", "",
-		"\\", "",
+		".", "\\.",
+		"+", "\\+",
+		"*", "\\*",
+		"?", "\\?",
+		"^", "\\^",
+		"$", "\\$",
+		"(", "\\(",
+		")", "\\)",
+		"[", "\\[",
+		"]", "\\]",
+		"{", "\\{",
+		"}", "\\}",
+		"|", "\\|",
+		"\\", "\\\\",
 	)
 	text = replacer.Replace(text)
 	return text
